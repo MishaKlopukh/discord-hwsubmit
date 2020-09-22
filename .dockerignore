@@ -1,0 +1,10 @@
+.git
+.cache
+node_modules
+npm-debug.log
+config.json
+config.example.json
+*.md
+!README*.md
+README.secret.md
+*.secret.*

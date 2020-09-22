@@ -1,0 +1,17 @@
+{
+  "name": "discord_hwsubmit_bot",
+  "version": "0.1.0",
+  "description": "Discord bot for Group Homework PDF Merging and Submission",
+  "author": "Misha Klopukh <mklopukh2019@fau.edu>",
+  "licence": "BSD-3-Clause",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js"
+  },
+  "dependencies": {
+    "pdf-merge": "^1.2.0",
+    "node-fetch": "^2.6.1",
+    "nanoid": "^3.1.12",
+    "discord.js": "^12.2.0"
+  }
+}
