@@ -4,7 +4,7 @@ const config = require('./config.json');
 
 global.files_list = [];
 
-const client = new Discord.Client();
+const client = new Discord.Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
 
 client.commands = new Discord.Collection();
 for (const file of fs.readdirSync('./commands').filter(file => file.endsWith('.js'))) {
@@ -42,6 +42,21 @@ client.on('message', message => {
 	} catch (error) {
 		console.error(error);
 		message.reply('there was an error trying to execute that command!');
+	}
+});
+
+client.on('messageReactionAdd', async (reaction, user) => {
+	if (reaction.partial) {
+		try {
+			await reaction.fetch();
+		} catch (error) {
+			console.error('Something went wrong when fetching the message: ', error);
+			return;
+		}
+	}
+	if (reaction.emoji.name === '💯') {
+		client.commands.get('addfile').execute(reaction.message);
+		reaction.remove().catch(error => console.error('Failed to remove reactions: ', error));
 	}
 });
 
